@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Calculator
+{
+    public class Log
+    {
+        public static void Main(string[] args)
+        {
+            Log obj = new Log();
+            obj.Operation();
+        }
+        public void Operation() 
+        {
+            while (true)
+            {
+                Console.WriteLine("1.Addtion \n 2.Subtraction \n 3.Multiplication \n 4.Division \n 0.Exit");
+                string val = Console.ReadLine();
+
+                if (!int.TryParse(val, out int M) || M < 0 || M > 4)
+                {
+                    Console.WriteLine("Invalid Option. Try again");
+                    continue;
+                }
+                if (M == 0)
+                {
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    break;
+                }
+                Console.Write("Enter value of A: ");
+                if (!float.TryParse(Console.ReadLine(), out float a))
+                {
+                    Console.WriteLine("Invalid input. Please enter a numeric value.");
+                    continue;
+                }
+
+                Console.Write("Enter value of B: ");
+                if (!float.TryParse(Console.ReadLine(), out float b))
+                {
+                    Console.WriteLine("Invalid input. Please enter a numeric value.");
+                    continue;
+                }
+                switch (M)
+                {
+                    case 1:
+                        Console.WriteLine($"A + B = {a + b}");
+                        break;
+
+                    case 2:
+                        Console.WriteLine($"A - B = {a - b}");
+                        break;
+
+                    case 3:
+                        Console.WriteLine($"A * B = {a * b}");
+                        break;
+
+                    case 4:
+                        if (b == 0)
+                        {
+                            Console.WriteLine("Error: Division by zero is not allowed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"A / B = {a / b}");
+                        }
+                        break;
+                }
+                Console.WriteLine("Press 'c' to continue or any other key to exit.");
+                string val1 = Console.ReadLine();
+                if (val1.ToLower() != "c")
+                {
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    break;   
+                }
+            }
+        }
+    }
+}
